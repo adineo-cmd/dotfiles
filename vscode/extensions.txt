@@ -1,3 +1,12 @@
-# refresh with: code --list-extensions > vscode/extensions.txt
-# restore with: cat vscode/extensions.txt | xargs -L1 code --install-extension
-ms-python.python
+alexandernanberg.horizon-theme-vscode
+astro-build.astro-vscode
+dossantosgabriel.linux-cheatsheet
+github.vscode-github-actions
+github.vscode-pull-request-github
+jdinhlife.gruvbox
+katsute.code-background
+ritwickdey.liveserver
+shalldie.background
+sst-dev.opencode
+svelte.svelte-vscode
+tomoki1207.pdf
