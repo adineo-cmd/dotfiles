@@ -60,8 +60,12 @@ if grep -qi microsoft /proc/version 2>/dev/null || [ -n "${WSL_DISTRO_NAME:-}" ]
 fi
 
 if [ "$UNINSTALL" -eq 1 ]; then
-  for f in "$HOME/.bashrc" "$HOME/.bash_profile" "$HOME/.inputrc" "$HOME/.shell_common" "$HOME/.bash_aliases" "$HOME/.gitconfig" "$HOME/.gitignore_global" "$HOME/.tmux.conf"; do
-    [ -L "$f" ] && rm "$f" && echo "removed $f"
+  for f in "$HOME/.bashrc" "$HOME/.bash_profile" "$HOME/.inputrc" "$HOME/.shell_common" "$HOME/.bash_aliases" "$HOME/.gitconfig" "$HOME/.gitignore_global" "$HOME/.config/starship.toml" "$HOME/.tmux.conf" "$HOME/.config/nvim/init.lua"; do
+    if [ "$DRY_RUN" -eq 1 ]; then
+      echo "[dry-run] would remove $f"
+    elif [ -L "$f" ]; then
+      rm "$f" && echo "removed $f"
+    fi
   done
   echo "uninstall done (backups kept under ~/.dotfiles_backup/)"
   exit 0
