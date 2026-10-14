@@ -1,0 +1,36 @@
+# ~/.shell_common — shared by bash (and future shells). Portable Linux/macOS/WSL.
+
+# PATH: user bins first
+[ -d "$HOME/bin" ] && case ":$PATH:" in *":$HOME/bin:"*) ;; *) PATH="$HOME/bin:$PATH";; esac
+[ -d "$HOME/.local/bin" ] && case ":$PATH:" in *":$HOME/.local/bin:"*) ;; *) PATH="$HOME/.local/bin:$PATH";; esac
+[ -d "$HOME/dotfiles/bin" ] && case ":$PATH:" in *":$HOME/dotfiles/bin:"*) ;; *) PATH="$HOME/dotfiles/bin:$PATH";; esac
+
+# History
+export HISTSIZE=5000 HISTFILESIZE=10000
+shopt -s histappend checkwinsize 2>/dev/null || true
+
+# Editor
+export EDITOR="nvim"
+command -v nvim >/dev/null 2>&1 || export EDITOR="vim"
+
+# NVM (guarded)
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
+
+# Android SDK (guarded, only if dir exists)
+if [ -d "$HOME/Android/Sdk" ]; then
+  export ANDROID_HOME="$HOME/Android/Sdk"
+  PATH="$PATH:$ANDROID_HOME/emulator:$ANDROID_HOME/platform-tools"
+fi
+
+# opencode bin (guarded)
+[ -d "$HOME/.opencode/bin" ] && case ":$PATH:" in *":$HOME/.opencode/bin:"*) ;; *) PATH="$HOME/.opencode/bin:$PATH";; esac
+
+# starship prompt (guarded)
+command -v starship >/dev/null 2>&1 && eval "$(starship init bash)"
+
+# fzf (guarded)
+[ -f ~/.fzf.bash ] && . ~/.fzf.bash
+
+# machine-local overrides (never committed)
+[ -f "$HOME/.shell_local" ] && . "$HOME/.shell_local"
