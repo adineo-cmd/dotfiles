@@ -1,0 +1,5 @@
+# copy to ~/.gitconfig.local for machine-specific identity
+# cp ~/dotfiles/git/gitconfig.local.example ~/.gitconfig.local
+[user]
+  name = adineo-cmd
+  email = you@work-machine.example

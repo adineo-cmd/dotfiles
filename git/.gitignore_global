@@ -1,0 +1,13 @@
+# OS / editor noise
+.DS_Store
+*.swp
+*.swo
+*~
+
+# build / env
+.env
+__pycache__/
+node_modules/
+.venv/
+dist/
+build/
