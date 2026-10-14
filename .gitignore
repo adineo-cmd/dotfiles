@@ -1,0 +1,17 @@
+# machine-local overrides (never commit)
+*.local
+.shell_local
+.gitconfig.local
+.env
+
+# secrets
+*token*
+*secret*
+.ssh/
+.gnupg/
+*.pem
+*.key
+
+# backups / OS noise
+.dotfiles_backup/
+.DS_Store
