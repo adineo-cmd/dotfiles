@@ -2,4 +2,7 @@
 set -euo pipefail
 # delete local branches fully merged into main
 git fetch --prune
-git branch --merged main | grep -Ev '^\*? * (main|master)$' | grep . | xargs git branch -d
+branches="$(git branch --merged main | grep -Ev '^\*? * (main|master)$' || true)"
+if [ -n "$branches" ]; then
+  echo "$branches" | xargs git branch -d
+fi
