@@ -26,5 +26,5 @@ Same as Ubuntu. VS Code: use Windows-side VS Code + Remote-WSL; settings sync fr
 
 ```bash
 code --list-extensions > vscode/extensions.txt   # refresh list before commit
-cat vscode/extensions.txt | xargs -L1 code --install-extension
+grep -v '^#' vscode/extensions.txt | grep -v '^$' | xargs -L1 code --install-extension
 ```

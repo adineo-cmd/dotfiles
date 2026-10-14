@@ -12,6 +12,7 @@ usage() {
 
 link_one() {
   local src="$1" dest="$2"
+  [ -e "$src" ] || { echo "missing src: $src" >&2; return 1; }
   if [ "$DRY_RUN" -eq 1 ]; then
     echo "[dry-run] $dest -> $src"
     return 0
@@ -22,10 +23,9 @@ link_one() {
     echo "linked $dest -> $src"
   elif [ -e "$dest" ]; then
     if [ "$FORCE" -eq 1 ]; then
-      mkdir -p "$BACKUP_DIR"
-      mv "$dest" "$BACKUP_DIR/"
+      rm -rf "$dest"
       ln -sfn "$src" "$dest"
-      echo "backed up + linked $dest"
+      echo "force-linked $dest -> $src (no backup)"
     else
       mkdir -p "$BACKUP_DIR"
       mv "$dest" "$BACKUP_DIR/"

@@ -14,7 +14,7 @@ cd ~/dotfiles
 ## Restore VS Code
 
 ```bash
-cat vscode/extensions.txt | xargs -L1 code --install-extension
+grep -v '^#' vscode/extensions.txt | grep -v '^$' | xargs -L1 code --install-extension
 ```
 
 See `docs/SETUP.md` for fresh-machine steps per OS.
